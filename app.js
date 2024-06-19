@@ -40,23 +40,22 @@ app.get('/makeapayment', (req, res) => {
     };
 
     // lets make the seamless payment then ....
-    pesepay
-        .makeSeamlessPayment(paymentDetails)
-        .then((response) => {
-            const pollUrl = response.pollUrl;
-            //   save this reference number somewhere
-            const referenceNumber = response.referenceNumber;
+    pesepay.makeSeamlessPayment(paymentDetails).then((response) => {
+        const pollUrl = response.pollUrl;
+        //   save this reference number somewhere
+        const referenceNumber = response.referenceNumber;
 
-            // check status
-            pesepay
-                .checkPaymentStatus(referenceNumber)
-                .then((response) => {
-                    const status = response.transactionStatus;
-                    console.log(status);
-                })
-        })
-        .catch((error) => {
-        });
+        // check status
+        setTimeout(() => {
+            pesepay.checkPaymentStatus(referenceNumber).then((response) => {
+                const status = response.transactionStatus.toLowerCase();
+                res.json(status);
+            });
+        }, 20000);
+
+    }).catch((error) => {
+        console.log(error);
+    });
 });
 
 app.listen(8080, () => {
