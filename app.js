@@ -52,6 +52,7 @@ app.get('/makeapayment', (req, res) => {
                 .checkPaymentStatus(referenceNumber)
                 .then((response) => {
                     const status = response.transactionStatus;
+                    console.log(status);
                 })
         })
         .catch((error) => {
