@@ -17,7 +17,7 @@ app.get('/makeapayment', (req, res) => {
     const pesepay = new PesePayClient(INTEGRATION_KEY, ENCRYPTION_KEY);
 
     // payment related variables
-    const amount = 0.01;
+    const amount = 0.1;
     const currencyCode = "USD";
     const reasonForPayment = "SDA Camp Meeting Payment";
     const phoneNumber = "0773468496"
