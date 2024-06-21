@@ -58,6 +58,6 @@ app.get('/makeapayment', (req, res) => {
     });
 });
 
-app.listen(5000, () => {
+app.listen(8080, () => {
     console.log('PesePay app up and running!');
 });
