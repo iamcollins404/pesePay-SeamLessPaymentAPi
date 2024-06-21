@@ -25,9 +25,7 @@ app.post('/makeapayment', (req, res) => {
 
     // payment related variables
     const amount = 0.1;
-    const currencyCode = "USD";
     const reasonForPayment = "SDA Camp Meeting Payment";
-    const phoneNumber = "0773468496"
 
     // declare the payment details
     const paymentDetails = {
