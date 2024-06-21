@@ -24,13 +24,12 @@ app.post('/makeapayment', (req, res) => {
     const pesepay = new PesePayClient(INTEGRATION_KEY, ENCRYPTION_KEY);
 
     // payment related variables
-    const amount = 0.1;
-    const reasonForPayment = "SDA Camp Meeting Payment";
+     const reasonForPayment = "SDA Camp Meeting Payment";
 
     // declare the payment details
     const paymentDetails = {
         amountDetails: {
-            amount: amount,
+            amount: total,
             currencyCode: "USD",
         },
         merchantReference: Math.floor(Math.random() * 10000).toString(),
