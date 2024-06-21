@@ -4,15 +4,22 @@ const app = express();
 // pese pay configurations
 const { PesePayClient } = require("pesepay-js");
 
+const bodyParser = require('body-parser'); // Add body-parser
+
 app.get('/', (req, res) => {
     res.send('Hello World.. Welcome to PesePay API for accepting payments in Zimbabwe!');
 });
 
-app.get('/makeapayment', (req, res) => {
+
+app.use(bodyParser.json());
+
+app.post('/makeapayment', (req, res) => {
+    const { ecocashNumber, total, apiKey, encryptionKey } = req.body;
+
     // the variables from any app making api call  --- so from body parser
     // the keys for pese pay
-    const ENCRYPTION_KEY = "8f3b61f922fd41db809b0817a51e7751";
-    const INTEGRATION_KEY = "44e5dc47-ae77-43c0-99df-6f8616a4ddfb";
+    const ENCRYPTION_KEY = encryptionKey;
+    const INTEGRATION_KEY = apiKey;
 
     const pesepay = new PesePayClient(INTEGRATION_KEY, ENCRYPTION_KEY);
 
@@ -34,9 +41,9 @@ app.get('/makeapayment', (req, res) => {
         returnUrl: "http://http://139.84.234.229:4701/pesepayReturnUrl",
         paymentMethodCode: "PZW201",
         customer: {
-            phoneNumber: phoneNumber,
+            phoneNumber: ecocashNumber,
         },
-        paymentMethodRequiredFields: { customerPhoneNumber: phoneNumber },
+        paymentMethodRequiredFields: { customerPhoneNumber: ecocashNumber },
     };
 
     // lets make the seamless payment then ....
