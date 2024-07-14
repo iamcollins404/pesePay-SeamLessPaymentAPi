@@ -7,7 +7,7 @@ const { PesePayClient } = require("pesepay-js");
 const bodyParser = require('body-parser'); // Add body-parser
 
 app.get('/', (req, res) => {
-    res.send('Hello World.. Welcome to PesePay API for accepting payments in Zimbabwe!');
+    res.send('Hello World.. Welcome to PesePay API for accepting payments in Zimbabwe for our inhouse!');
 });
 
 
