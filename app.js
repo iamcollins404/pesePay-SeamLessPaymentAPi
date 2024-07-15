@@ -55,7 +55,7 @@ app.post('/makeapayment', (req, res) => {
                 const status = response.transactionStatus.toLowerCase();
                 res.json(status);
             });
-        }, 10000);
+        }, 20000);
 
     }).catch((error) => {
         console.log(error);
